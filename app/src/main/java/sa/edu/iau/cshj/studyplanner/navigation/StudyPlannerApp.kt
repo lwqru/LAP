@@ -8,6 +8,7 @@ import androidx.navigation.toRoute
 import sa.edu.iau.cshj.studyplanner.ui.PlannerHomeRoute
 import sa.edu.iau.cshj.studyplanner.ui.TaskDetailRoute
 
+// Only the NavHost navigates.
 @Composable
 fun StudyPlannerApp() {
     val navController = rememberNavController()
@@ -18,16 +19,14 @@ fun StudyPlannerApp() {
     ) {
         composable<PlannerHome> {
             PlannerHomeRoute(
-                onTaskClick = { title ->
-                    navController.navigate(TaskDetail(title))
-                }
+                onTaskClick = { id -> navController.navigate(TaskDetail(taskId = id)) }
             )
         }
 
         composable<TaskDetail> { backStackEntry ->
             val detail: TaskDetail = backStackEntry.toRoute()
             TaskDetailRoute(
-                title = detail.title,
+                taskId = detail.taskId,
                 onBackClick = { navController.popBackStack() }
             )
         }

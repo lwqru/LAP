@@ -1,10 +1,10 @@
-#Mon Oct 26 16:49:27 AST 2026
-base.0=C\:\\MOBL\\Projects\\StudyPlanner_Lab5_Part2_ready (1)\\StudyPlanner_Lab5_Part2\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\MOBL\\Projects\\StudyPlanner_Lab5_Part2_ready (1)\\StudyPlanner_Lab5_Part2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\MOBL\\Projects\\StudyPlanner_Lab5_Part2_ready (1)\\StudyPlanner_Lab5_Part2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.3=C\:\\MOBL\\Projects\\StudyPlanner_Lab5_Part2_ready (1)\\StudyPlanner_Lab5_Part2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
-base.4=C\:\\MOBL\\Projects\\StudyPlanner_Lab5_Part2_ready (1)\\StudyPlanner_Lab5_Part2\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
-base.5=C\:\\MOBL\\Projects\\StudyPlanner_Lab5_Part2_ready (1)\\StudyPlanner_Lab5_Part2\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+#Mon Nov 02 16:45:59 AST 2026
+base.0=C\:\\MOBL\\Projects\\StudyPlanner_Lab7_Part4\\StudyPlanner_Lab7_Part4\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\MOBL\\Projects\\StudyPlanner_Lab7_Part4\\StudyPlanner_Lab7_Part4\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\MOBL\\Projects\\StudyPlanner_Lab7_Part4\\StudyPlanner_Lab7_Part4\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.3=C\:\\MOBL\\Projects\\StudyPlanner_Lab7_Part4\\StudyPlanner_Lab7_Part4\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
+base.4=C\:\\MOBL\\Projects\\StudyPlanner_Lab7_Part4\\StudyPlanner_Lab7_Part4\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
+base.5=C\:\\MOBL\\Projects\\StudyPlanner_Lab7_Part4\\StudyPlanner_Lab7_Part4\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=11/classes.dex

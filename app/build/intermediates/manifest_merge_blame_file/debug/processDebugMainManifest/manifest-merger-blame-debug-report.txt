@@ -20,35 +20,35 @@
 15-->[androidx.core:core:1.13.1] C:\MOBL\.gradle\caches\8.9\transforms\79daa0bd70b8462285be90bd2e5109e7\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
 16
 17    <application
-17-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:2:5-15:19
+17-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:2:5-15:19
 18        android:allowBackup="true"
-18-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:3:9-35
+18-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:3:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 19-->[androidx.core:core:1.13.1] C:\MOBL\.gradle\caches\8.9\transforms\79daa0bd70b8462285be90bd2e5109e7\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 20        android:debuggable="true"
 21        android:extractNativeLibs="false"
 22        android:label="Study Planner"
-22-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:4:9-38
+22-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:4:9-38
 23        android:supportsRtl="true"
-23-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:5:9-35
+23-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:5:9-35
 24        android:testOnly="true"
 25        android:theme="@android:style/Theme.Material.Light.NoActionBar" >
-25-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:6:9-72
+25-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:6:9-72
 26        <activity
-26-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:7:9-14:20
+26-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:7:9-14:20
 27            android:name="sa.edu.iau.cshj.studyplanner.MainActivity"
-27-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:8:13-41
+27-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:8:13-41
 28            android:exported="true" >
-28-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:9:13-36
+28-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:9:13-36
 29            <intent-filter>
-29-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:10:13-13:29
+29-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:10:13-13:29
 30                <action android:name="android.intent.action.MAIN" />
-30-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:11:17-69
-30-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:11:25-66
+30-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:11:17-69
+30-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:11:25-66
 31
 32                <category android:name="android.intent.category.LAUNCHER" />
-32-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:12:17-77
-32-->C:\MOBL\Projects\StudyPlanner_Lab5_Part2_ready (1)\StudyPlanner_Lab5_Part2\app\src\main\AndroidManifest.xml:12:27-74
+32-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:12:17-77
+32-->C:\MOBL\Projects\StudyPlanner_Lab7_Part4\StudyPlanner_Lab7_Part4\app\src\main\AndroidManifest.xml:12:27-74
 33            </intent-filter>
 34        </activity>
 35        <activity

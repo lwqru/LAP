@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import sa.edu.iau.cshj.studyplanner.ui.theme.StudyPlannerTheme
 
 data class TaskDetailUiState(
-    val title: String = "Complete CSC 402 Lab 5"
+    val title: String = "Complete Lab 7"
 )
 
 @Composable
@@ -46,10 +46,11 @@ fun TaskDetailScreen(
 
 @Composable
 fun TaskDetailRoute(
-    title: String,
+    taskId: Int,
     onBackClick: () -> Unit
 ) {
     val context = LocalContext.current
+    val title = sampleTasks.firstOrNull { it.id == taskId }?.title ?: "Unknown task"
 
     TaskDetailScreen(
         uiState = TaskDetailUiState(title = title),
@@ -71,7 +72,7 @@ fun TaskDetailRoute(
 private fun TaskDetailPreviewLab() {
     StudyPlannerTheme {
         TaskDetailScreen(
-            uiState = TaskDetailUiState("Complete CSC 402 Lab 5"),
+            uiState = TaskDetailUiState("Complete Lab 7"),
             onShareClick = {},
             onBackClick = {}
         )
