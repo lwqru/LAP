@@ -1,0 +1,6 @@
+CSC 402 — Lab 4 Individual Assignment: AI Use & Disclosure Log
+
+Tool used: ChatGPT
+Purpose: Helped draft and organize the StudyPlanner Part 1 Kotlin/Jetpack Compose project, previews, and paper sketch/state-list reference.
+What I reviewed/changed: I need to open the project in Android Studio, inspect the code, make any changes I understand and need, sync/build/run it, and capture my own actual screenshots before submitting.
+Disclosure reminder: Keep this log accurate and update it with any changes you personally make. Do not claim testing or screenshots that you have not completed.
