@@ -1,0 +1,6 @@
+CSC 402 — Lab 5 Individual Assignment: AI Use & Disclosure Log
+
+Tools used: ChatGPT and Claude
+Purpose: Helped draft the Lab 5 navigation (NavHost, type-safe routes), the Task Detail screen with Share and Back, and merge it with my Lab 4 StudyPlanner project.
+What I reviewed/changed: [Write here what you personally checked, changed, and tested in Android Studio.]
+Disclosure reminder: Keep this log accurate. Do not claim testing or screenshots that you have not completed.
