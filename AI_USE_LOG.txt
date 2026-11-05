@@ -1,6 +1,0 @@
-CSC 402 — Lab 7 Individual (Semester App Part 4) Assignment: AI Use & Disclosure Log
-
-Tools used: ChatGPT and Claude
-Purpose: Helped draft Part 4: StudyTask, stateless TaskItem, LazyColumn with keys, map + copy for the done toggle, three previews, and navigation by task id.
-What I reviewed/changed: [Write here what you personally checked, changed, and tested in Android Studio.]
-Disclosure reminder: Keep this log accurate. Do not claim testing or screenshots that you have not completed.
