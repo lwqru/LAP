@@ -1,6 +1,7 @@
 package com.example.studyplanner
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -8,29 +9,45 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class TodayViewModel : ViewModel() {
+class TodayViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = FakeTaskRepository()
+    private val repository = TaskRepository(
+        StudyDatabase.getDatabase(application).studyTaskDao()
+    )
 
     private val _uiState = MutableStateFlow(TodayUiState())
     val uiState: StateFlow<TodayUiState> = _uiState.asStateFlow()
 
-    // Loading starts here
+    // Collect the Flow once: every time the table changes, Room sends a new list
     init {
         viewModelScope.launch {
-            val tasks = repository.getTodayTasks()
-            _uiState.update { it.copy(isLoading = false, tasks = tasks) }
+            repository.allTasks.collect { tasks ->
+                _uiState.update { it.copy(isLoading = false, tasks = tasks) }
+            }
         }
     }
 
-    fun onTaskChecked(id: Int, checked: Boolean) {
+    // Events only WRITE to the database; they never change the list themselves
+    fun onAddTask(title: String) {
+        if (title.isBlank()) return
         viewModelScope.launch {
-            _uiState.update { state ->
-                state.copy(
-                    tasks = state.tasks.map { if (it.id == id) it.copy(isDone = checked) else it },
-                    message = if (checked) "Marked as done" else null
-                )
-            }
+            repository.add(title.trim())
+            _uiState.update { it.copy(message = "Task added") }
+        }
+    }
+
+    fun onTaskCheckedChange(task: StudyTask, checked: Boolean) {
+        viewModelScope.launch {
+            repository.setDone(task, checked)
+            if (checked) _uiState.update { it.copy(message = "Marked as done") }
+        }
+    }
+
+    // Challenge
+    fun onDeleteDone() {
+        viewModelScope.launch {
+            repository.deleteDone()
+            _uiState.update { it.copy(message = "Done tasks cleared") }
         }
     }
 
