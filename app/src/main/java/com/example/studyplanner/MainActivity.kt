@@ -9,6 +9,8 @@ import com.example.studyplanner.ui.theme.StudyPlannerTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        createReminderChannel(this)          // new
+        scheduleDailyReminder(this)          // new
         enableEdgeToEdge()
         setContent {
             StudyPlannerTheme {

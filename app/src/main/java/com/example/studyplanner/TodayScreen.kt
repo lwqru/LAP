@@ -1,16 +1,11 @@
 package com.example.studyplanner
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -35,102 +30,111 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 
-// Route: reads the state from the ViewModel
 @Composable
 fun TodayRoute(viewModel: TodayViewModel = viewModel()) {
-    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val isFocusMode = rememberAirplaneModeOn()                    // new
+    AskNotificationPermission()                                   // new
     TodayScreen(
-        state = state,
-        onTaskCheckedChange = { task, checked -> viewModel.onTaskCheckedChange(task, checked) },
+        uiState = uiState,
+        isFocusMode = isFocusMode,                                // new
         onAddTask = { title -> viewModel.onAddTask(title) },
+        onTaskCheckedChange = { task, done ->
+            viewModel.onTaskCheckedChange(task, done)
+        },
         onDeleteDone = { viewModel.onDeleteDone() },
-        onMessageShown = { viewModel.onMessageShown() }
+        onMessageShown = { viewModel.onMessageShown() },
+        onRemindMe = { viewModel.onRemindMe() }                   // new
     )
 }
 
-// Screen: only draws what it is given
+@Composable
+fun TaskRow(task: StudyTask, onCheckedChange: (StudyTask, Boolean) -> Unit) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Checkbox(
+            checked = task.isDone,
+            onCheckedChange = { done -> onCheckedChange(task, done) }
+        )
+        Column {
+            Text(task.title)
+            Text(task.course, style = MaterialTheme.typography.bodySmall)
+        }
+    }
+}
+
 @Composable
 fun TodayScreen(
-    state: TodayUiState,
-    onTaskCheckedChange: (StudyTask, Boolean) -> Unit,
+    uiState: TodayUiState,
+    isFocusMode: Boolean,                                         // new
     onAddTask: (String) -> Unit,
+    onTaskCheckedChange: (StudyTask, Boolean) -> Unit,
     onDeleteDone: () -> Unit,
-    onMessageShown: () -> Unit
+    onMessageShown: () -> Unit,
+    onRemindMe: () -> Unit                                        // new
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
-    var newTitle by rememberSaveable { mutableStateOf("") }
 
-    LaunchedEffect(state.message) {
-        state.message?.let {
-            snackbarHostState.showSnackbar(it)
+    LaunchedEffect(uiState.message) {
+        val message = uiState.message
+        if (message != null) {
+            snackbarHostState.showSnackbar(message)
             onMessageShown()
         }
     }
 
-    Scaffold(snackbarHost = { SnackbarHost(snackbarHostState) }) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(16.dp)
-        ) {
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) }
+    ) { innerPadding ->
+        Column(Modifier.padding(innerPadding).padding(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    "Today",
-                    style = MaterialTheme.typography.headlineMedium,
-                    modifier = Modifier.weight(1f)
-                )
-                TextButton(onClick = onDeleteDone) { Text("Clear done") }
+                Text("Today", Modifier.weight(1f),
+                    style = MaterialTheme.typography.headlineMedium)
+                TextButton(onClick = onRemindMe) { Text("Remind me") }   // new
                 TextButton(onClick = {
-                    scope.launch { snackbarHostState.showSnackbar("Tick a task when you finish it") }
+                    scope.launch {
+                        snackbarHostState.showSnackbar(
+                            "Tick a task when you finish it")
+                    }
                 }) { Text("Help") }
             }
-
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                OutlinedTextField(
-                    value = newTitle,
-                    onValueChange = { newTitle = it },
-                    label = { Text("New task") },
-                    singleLine = true,
-                    modifier = Modifier.weight(1f)
-                )
-                Spacer(Modifier.width(8.dp))
-                Button(onClick = {
-                    onAddTask(newTitle)
-                    if (newTitle.isNotBlank()) newTitle = ""
-                }) { Text("Add") }
-            }
-
-            when {
-                state.isLoading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator()
+            TextButton(onClick = onDeleteDone) { Text("Clear done") }
+            if (isFocusMode) {                                           // new
+                Card(Modifier.fillMaxWidth()) {
+                    Text(
+                        "Focus mode: airplane mode is on. No distractions!",
+                        Modifier.padding(12.dp)
+                    )
                 }
-                state.tasks.isEmpty() -> Text(
-                    "No tasks yet. Add your first one above.",
-                    modifier = Modifier.padding(top = 16.dp)
-                )
-                else -> LazyColumn {
-                    items(state.tasks, key = { it.id }) { task ->
-                        Row(
-                            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Checkbox(
-                                checked = task.isDone,
-                                onCheckedChange = { onTaskCheckedChange(task, it) }
-                            )
-                            Column {
-                                Text(task.title, style = MaterialTheme.typography.bodyLarge)
-                                Text(task.course, style = MaterialTheme.typography.bodySmall)
-                            }
-                        }
-                    }
+            }
+            AddTaskRow(onAddTask)
+            when {
+                uiState.isLoading -> CircularProgressIndicator()
+                uiState.tasks.isEmpty() ->
+                    Text("No tasks yet. Add your first one above.")
+                else -> uiState.tasks.forEach { task ->
+                    TaskRow(task, onTaskCheckedChange)
                 }
             }
         }
+    }
+}
+
+@Composable
+fun AddTaskRow(onAddTask: (String) -> Unit) {
+    var newTitle by rememberSaveable { mutableStateOf("") }
+
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        OutlinedTextField(
+            value = newTitle,
+            onValueChange = { newTitle = it },
+            label = { Text("New task") },
+            singleLine = true,
+            modifier = Modifier.weight(1f)
+        )
+        Button(onClick = {
+            onAddTask(newTitle)
+            newTitle = ""
+        }) { Text("Add") }
     }
 }
